@@ -41,21 +41,19 @@ from invertransforms import functional as F
 ```
 Such that more functions could be added in the future.
 """
-from torchvision.transforms import functional
+from .affine import Affine, RandomAffine
+# from .color import ColorJitter, Grayscale, RandomGrayscale
+# from .crop_pad import Crop, RandomCrop, Pad, FiveCrop, TenCrop, CenterCrop
+# from .perpective import Perspective, VerticalFlip, HorizontalFlip, RandomHorizontalFlip, RandomVerticalFlip, \
+#     RandomPerspective
+# from .resize import Resize, Scale, RandomResizedCrop, RandomSizedCrop
+# from .sequence import Compose, RandomOrder, RandomChoice, RandomApply
+# from .tensors import LinearTransformation, Normalize, RandomErasing
+# from .util_functions import Identity, Lambda, TransformIf, ToPILImage, ToTensor
 
-from .affine import Affine, RandomAffine, RandomRotation, Rotation
-from .color import ColorJitter, Grayscale, RandomGrayscale
-from .crop_pad import Crop, RandomCrop, Pad, FiveCrop, TenCrop, CenterCrop
-from .perpective import Perspective, VerticalFlip, HorizontalFlip, RandomHorizontalFlip, RandomVerticalFlip, \
-    RandomPerspective
-from .resize import Resize, Scale, RandomResizedCrop, RandomSizedCrop
-from .sequence import Compose, RandomOrder, RandomChoice, RandomApply
-from .tensors import LinearTransformation, Normalize, RandomErasing
-from .util_functions import Identity, Lambda, TransformIf, ToPILImage, ToTensor
-
-__all__ = ['Affine', 'CenterCrop', 'ColorJitter', 'Compose', 'Crop', 'FiveCrop', 'Grayscale', 'Identity', 'Lambda',
-           'LinearTransformation', 'Normalize', 'Pad', 'Perspective', 'RandomAffine', 'HorizontalFlip', 'VerticalFlip',
-           'RandomApply', 'RandomChoice', 'RandomCrop', 'RandomErasing', 'RandomGrayscale', 'RandomHorizontalFlip',
-           'RandomOrder', 'RandomPerspective', 'RandomResizedCrop', 'RandomRotation', 'RandomSizedCrop',
-           'RandomVerticalFlip', 'Resize', 'Rotation', 'Scale', 'TenCrop', 'ToPILImage', 'ToTensor', 'TransformIf',
-           'functional']
+# __all__ = ['Affine', 'CenterCrop', 'ColorJitter', 'Compose', 'Crop', 'FiveCrop', 'Grayscale', 'Identity', 'Lambda',
+#            'LinearTransformation', 'Normalize', 'Pad', 'Perspective', 'RandomAffine', 'HorizontalFlip', 'VerticalFlip',
+#            'RandomApply', 'RandomChoice', 'RandomCrop', 'RandomErasing', 'RandomGrayscale', 'RandomHorizontalFlip',
+#            'RandomOrder', 'RandomPerspective', 'RandomResizedCrop', 'RandomRotation', 'RandomSizedCrop',
+#            'RandomVerticalFlip', 'Resize', 'Rotation', 'Scale', 'TenCrop', 'ToPILImage', 'ToTensor', 'TransformIf',
+#            'functional']
