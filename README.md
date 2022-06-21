@@ -11,7 +11,8 @@ invertransforms
 [![PyPI](https://img.shields.io/pypi/v/invertransforms.svg?color=blue&style=for-the-badge)](https://pypi.org/project/invertransforms)
 
 A library which turns torchvision transformations __invertible__ and __replayable__.
-
+! This is a form of the original library, which had not been updated for 3 years and did not run. This fork refactors the
+library.
 
 Installation
 ------------
