@@ -8,7 +8,7 @@ import torch
 from torchvision import transforms
 import torchvision.transforms.functional as F
 import torchvision.transforms.functional_tensor as F_t
-from .utils import _affine_with_matrix, _invert_affine_matrix
+from .utils import _invert_affine_matrix
 from ..lib import Invertible
 
 
@@ -17,13 +17,12 @@ class Affine(Invertible):
     Apply affine transformation on the image.
 
     Args:
-        matrix (list of int): transformation matrix (from destination image to source)
-         because we want to interpolate the (discrete) destination pixel from the local
-         area around the (floating) source pixel.
+        parameters to be used (without randomness)
     """
 
-    def __init__(self, matrix, fill=None):
-        self._matrix = matrix
+    def __init__(self, *params, fill=None):
+        self.params = params
+        self._matrix = F._get_inverse_affine_matrix([0., 0.], *self.params)
         self.fill = fill
 
     def __call__(self, img: torch.Tensor):
@@ -34,7 +33,7 @@ class Affine(Invertible):
         Returns:
             torch tensor: Affine transformed image.
         """
-        return _affine_with_matrix(img, self._matrix)
+        return F_t.affine(img, matrix= self._matrix, fill=self.fill)
 
     def inverse_transform(self, img: torch.Tensor):
 
@@ -56,7 +55,7 @@ class RandomAffine(transforms.RandomAffine, Invertible):
         Returns:
             torch tensor: Affine transformed image.
         """
-        if (not getattr(self, "params", False)) or reuse_params:
+        if (not getattr(self, "params", False)) or (not reuse_params):
             self.params = self.get_params(self.degrees, self.translate, self.scale, self.shear, img.shape)
 
         center = [0., 0.]

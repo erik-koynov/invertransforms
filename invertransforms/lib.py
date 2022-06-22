@@ -6,13 +6,13 @@ and utility functions.
 """
 import random
 from abc import abstractmethod
-
+import torch
 
 class Invertible:
     _tracked_inverses = dict()
 
     @abstractmethod
-    def __call__(self, img):
+    def __call__(self, img: torch.Tensor)-> torch.Tensor:
         """
         Apply the transformation
 
@@ -25,14 +25,11 @@ class Invertible:
         raise NotImplementedError
 
     @abstractmethod
-    def inverse(self) -> 'Invertible':
+    def inverse_transform(self, img: torch.Tensor):
         """
-        Abstract method to return the inverse of the transformation
-
-        Returns (Invertible): tf
-
+        Perform the inverse transform
+        :return:
         """
-        raise NotImplementedError
 
     def track(self, img, index=None):
         """
@@ -101,9 +98,6 @@ class Invertible:
     def __repr__(self):
         return f'{self.__class__.__name__}()'
 
-    # not very useful except for refactoring
-    # def _can_invert(self):
-    #    return True
 
 
 class InvertibleError(Exception):
