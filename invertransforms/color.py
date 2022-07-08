@@ -8,7 +8,7 @@ from torchvision import transforms
 from torchvision.transforms import functional as F
 
 import invertransforms as T
-from invertransforms.lib import InvertibleError, Invertible, flip_coin
+from .lib import InvertibleError, Invertible, flip_coin
 
 
 class ColorJitter(transforms.ColorJitter, Invertible):

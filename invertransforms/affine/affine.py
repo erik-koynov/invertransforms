@@ -25,13 +25,12 @@ class Affine(Invertible):
         self._matrix = F._get_inverse_affine_matrix([0., 0.], *self.params)
         self.fill = fill
 
-    def __call__(self, img: torch.Tensor):
+    def __call__(self, img: torch.Tensor, reuse_params=False):
         """
-        Args
-            img torch tensor: Image to be transformed.
 
-        Returns:
-            torch tensor: Affine transformed image.
+        :param img:
+        :param reuse_params: ignored
+        :return:
         """
         return F_t.affine(img, matrix= self._matrix, fill=self.fill)
 

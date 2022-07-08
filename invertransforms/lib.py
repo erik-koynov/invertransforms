@@ -12,7 +12,7 @@ class Invertible:
     _tracked_inverses = dict()
 
     @abstractmethod
-    def __call__(self, img: torch.Tensor)-> torch.Tensor:
+    def __call__(self, img: torch.Tensor, reuse_params=False)-> torch.Tensor:
         """
         Apply the transformation
 
@@ -30,6 +30,17 @@ class Invertible:
         Perform the inverse transform
         :return:
         """
+
+    @property
+    def fill(self):
+        try:
+            return self._fill
+        except AttributeError:
+            return None
+
+    @fill.setter
+    def fill(self, fill: int):
+        self._fill = fill
 
     def track(self, img, index=None):
         """
